@@ -1,7 +1,6 @@
 pico-8 cartridge // http://www.pico-8.com
 version 15
 __lua__
--- find carrots
 in_progress = 0
 start_end_game = 1
 game_over = 2
