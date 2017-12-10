@@ -7,60 +7,60 @@ left=0 right=1 up=2 down=3
 valid_moves = {left,right,up,down}
 
 function _init()
-	player = {}
-	player.x = flr(rnd(120))
-	player.y = flr(rnd(114)+8)
-	player.sprite = 1
-	player.speed = 2
-	
-	state = in_progress
-	score = 0
+  player = {}
+  player.x = flr(rnd(120))
+  player.y = flr(rnd(114)+8)
+  player.sprite = 1
+  player.speed = 2
+  
+  state = in_progress
+  score = 0
 end
 
 function move_player()
-	for i=1,#valid_moves do
-		if btn(valid_moves[i]) then
-			move_unit(player,valid_moves[i])
-		end
-	end
+  for i=1,#valid_moves do
+    if btn(valid_moves[i]) then
+      move_unit(player,valid_moves[i])
+    end
+  end
 end
 
 function move_unit(unit, direction)	
-	if direction == left and unit.x - unit.speed > 0 then
-		unit.x -= unit.speed
-		unit.sprite = 2
-	end
-	if direction == right and unit.x + unit.speed < 120 then
-		unit.x += unit.speed
-		unit.sprite = 1
-	end
-  	if direction == up and unit.y - unit.speed > 8 then
-    	unit.y -= unit.speed
-  	end
-  	if direction == down and unit.y + unit.speed < 120 then
-		unit.y += unit.speed
-	end
+  if direction == left and unit.x - unit.speed > 0 then
+    unit.x -= unit.speed
+    unit.sprite = 2
+  end
+  if direction == right and unit.x + unit.speed < 120 then
+    unit.x += unit.speed
+    unit.sprite = 1
+  end
+    if direction == up and unit.y - unit.speed > 8 then
+      unit.y -= unit.speed
+    end
+    if direction == down and unit.y + unit.speed < 120 then
+    unit.y += unit.speed
+  end
 end
 
 function draw_unit(unit)
-	spr(unit.sprite, unit.x, unit.y)
+  spr(unit.sprite, unit.x, unit.y)
 end
 
 function _update()
-	move_player()
+  move_player()
 end
 
 function _draw()
-	cls()
-	rectfill(0,0,127,127,3)
-	if state == in_progress then
-		draw_unit(player)
-	elseif state == game_over then
-		print("you win")
-		if btn(4) then
-			_init()
-		end
-	end
+  cls()
+  rectfill(0,0,127,127,3)
+  if state == in_progress then
+    draw_unit(player)
+  elseif state == game_over then
+    print("you win")
+    if btn(4) then
+      _init()
+    end
+  end
 end
 __gfx__
 00000000006006000060060000777700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
