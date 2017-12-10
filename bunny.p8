@@ -35,17 +35,17 @@ function move_unit(unit, direction)
 	if direction == right and unit.x + unit.speed < 120 then
 		unit.x += unit.speed
 		unit.sprite = 1
-  	end
+	end
   	if direction == up and unit.y - unit.speed > 8 then
-     	unit.y -= unit.speed
+    	unit.y -= unit.speed
   	end
   	if direction == down and unit.y + unit.speed < 120 then
 		unit.y += unit.speed
-  	end
+	end
 end
 
 function draw_unit(unit)
-	(unit.sprite, unit.x, unit.y)
+	spr(unit.sprite, unit.x, unit.y)
 end
 
 function _update()
