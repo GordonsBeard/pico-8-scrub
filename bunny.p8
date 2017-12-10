@@ -34,10 +34,10 @@ function move_unit(unit, direction)
     unit.x += unit.speed
     unit.sprite = 1
   end
-    if direction == up and unit.y - unit.speed > 8 then
-      unit.y -= unit.speed
-    end
-    if direction == down and unit.y + unit.speed < 120 then
+  if direction == up and unit.y - unit.speed > 8 then
+    unit.y -= unit.speed
+  end
+  if direction == down and unit.y + unit.speed < 120 then
     unit.y += unit.speed
   end
 end
