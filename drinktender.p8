@@ -39,89 +39,89 @@ simple_drinker = {}
 simple_drinker.drinks = {rum_coke, gin_tonic}
 
 function new_game()
-	-- new game
-	playing_game(level)
+  -- new game
+  playing_game(level)
 end
 
 function playing_game(level)
-	draw_ui()
-	draw_player()
-	draw_patron(level)
+  draw_ui()
+  draw_player()
+  draw_patron(level)
 end
 
 function draw_player()
-	print("im the player",75,121,6)
-	for i=1,#valid_btn do
-		if btn(valid_btn[i]) then
-			mix_drink(valid_btn[i])
-		end
-	end
+  print("im the player",75,121,6)
+  for i=1,#valid_btn do
+    if btn(valid_btn[i]) then
+      mix_drink(valid_btn[i])
+    end
+  end
 end
 
 function mix_drink(button)
-	if button == left then
-		glyph = "⬅️"
-		print(glyph, 70, 110, 3)
-	elseif button == right then
-		glyph = "➡️"
-		print(glyph, 80, 110, 3)
-	elseif button == up then
-		glyph = "⬆️"
-		print(glyph, 90, 110, 3)
-	elseif button == down then
-		glyph = "⬇️"
-		print(glyph, 100, 110, 3)
-	elseif button == btno then
-		glyph = "🅾️"
-		print(glyph, 110, 110, 3)
-	elseif button == btnx then
-		glyph = "❎"
-		print(glyph, 120, 110, 3)
-	end
+  if button == left then
+    glyph = "⬅️"
+    print(glyph, 70, 110, 3)
+  elseif button == right then
+    glyph = "➡️"
+    print(glyph, 80, 110, 3)
+  elseif button == up then
+    glyph = "⬆️"
+    print(glyph, 90, 110, 3)
+  elseif button == down then
+    glyph = "⬇️"
+    print(glyph, 100, 110, 3)
+  elseif button == btno then
+    glyph = "🅾️"
+    print(glyph, 110, 110, 3)
+  elseif button == btnx then
+    glyph = "❎"
+    print(glyph, 120, 110, 3)
+  end
 end
 
 function draw_patron(level)
-	drink = simple_drinker.drinks[level]
-	print("im the patron",2,2,6)
-	print("give me",2,10,6)
-	--print(level,50,50,5)
-	print(drink.name,2,18,6)
-	print_rec(drink,2,18)
+  drink = simple_drinker.drinks[level]
+  print("im the patron",2,2,6)
+  print("give me",2,10,6)
+  --print(level,50,50,5)
+  print(drink.name,2,18,6)
+  print_rec(drink,2,18)
 end
 
 function print_rec(drink,x,y)
-	x = x + #drink.name*4
-	for i=1,#drink.rec do
-		x = x+8
-		print(drink.rec[i],x,y)
-	end
+  x = x + #drink.name*4
+  for i=1,#drink.rec do
+    x = x+8
+    print(drink.rec[i],x,y)
+  end
 end
 
 function draw_ui()
 end
 
 function draw_menu()
-	cls()
-	print("drinktender",36,60)
-	print("press ❎ to start",26,70)
-	if(btn(btnx)) then
-		state = in_progress
-	end
+  cls()
+  print("drinktender",36,60)
+  print("press ❎ to start",26,70)
+  if(btn(btnx)) then
+    state = in_progress
+  end
 end
 
 function _init()
-	player = {}
-	player.busy = false
-	player.drinks = 0
-	level = flr(rnd(2))+1
-	state = start_screen
+  player = {}
+  player.busy = false
+  player.drinks = 0
+  level = flr(rnd(2))+1
+  state = start_screen
 end
 
 function _draw()
-	cls()
-	if state == start_screen then
-		draw_menu()
-	elseif state == in_progress then
-		playing_game(level)
-	end
+  cls()
+  if state == start_screen then
+    draw_menu()
+  elseif state == in_progress then
+    playing_game(level)
+  end
 end
