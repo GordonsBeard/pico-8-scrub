@@ -3,15 +3,20 @@ version 15
 __lua__
 -- drinktender
 
--- state
-
+-- game state
 start_screen = 0
 in_progress = 1
 between_rounds = 2
 game_over = 3
 
--- game options
-time_limit = 30
+-- in-game state
+patron_state = 0
+
+no_patron = 0
+patron_waiting = 1
+patron_served = 2
+
+patron_clock = 30
 
 -- drinks
 drinks = {}
@@ -100,28 +105,25 @@ end
 function draw_ui()
 end
 
-function draw_menu()
+function draw_start_screen()
   cls()
-  print("drinktender",36,60)
-  print("press ❎ to start",26,70)
+  print("drinktender")
+  print("press ❎ to start")
   if(btn(btnx)) then
     state = in_progress
   end
 end
 
+-- loops!
 function _init()
-  player = {}
-  player.busy = false
-  player.drinks = 0
-  level = flr(rnd(2))+1
-  state = start_screen
+  game_state = start_screen
 end
 
 function _draw()
   cls()
-  if state == start_screen then
-    draw_menu()
-  elseif state == in_progress then
+  if game_state == start_screen then
+    draw_start_screen()
+  elseif game_state == in_progress then
     playing_game(level)
   end
 end
